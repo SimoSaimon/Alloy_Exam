@@ -1,0 +1,1518 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ALLOY</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="121dd7ec-b10a-8051-8314-fd38f2f35998" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/balloon_red.svg"/></div><h1 class="page-title">ALLOY</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Notebook</th><td><a href="https://www.notion.so/SOFTWARE-ENGINEERING-2-9de951ca3d824a6e96fe794f3ff9c7a7?pvs=21"><span class="icon">📒</span>SOFTWARE ENGINEERING 2</a></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>Useful Documents</th><td><span style="margin-right:6px"><a href="03a.AlloyPart1-2.pdf">CourseSlides.pdf</a></span><span style="margin-right:6px"><a href="https://github.com/lucapada/ResearchProjectAlloy6">EducationalModuleGit</a></span><span style="margin-right:6px"><a href="https://haslab.github.io/formal-software-design/">TextBook</a></span><span style="margin-right:6px"><a href="SE2.Pre-Exam.Example.2024-12-19.pdf">Exam-Example.pdf</a></span><span style="margin-right:6px"><a href="https://alloytools.org/documentation.html">Class Diagram.html</a></span><span style="margin-right:6px"><a href="03b.AlloyExercises_(1).pdf">Alloy Examples.pdf</a></span><span style="margin-right:6px"><a href="Alloy6_Exercise.pdf">Alloy6_Exercise.pdf</a></span><span style="margin-right:6px"><a href="Alloy6_Exercise_(1).pdf">Alloy6_Dynamic_Exercise.pdf</a></span></td></tr></tbody></table></header><div class="page-body"><h2 id="122dd7ec-b10a-8045-8f47-e594c7e77a69" class="">INFO/LINKS</h2><p id="121dd7ec-b10a-80ed-953c-d5fa3d2ed0ba" class=""><a href="https://alloytools.org/">https://alloytools.org/</a>k</p><figure id="152dd7ec-b10a-8078-a6e0-da0f3bf9a44e" class="link-to-page"><a href="https://www.notion.so/Alloy4Fun-152dd7ecb10a8078a6e0da0f3bf9a44e?pvs=21"><img class="icon" src="https://www.corrierenerd.it/wp-content/uploads/2024/11/Chill-Guy.webp"/>Alloy4Fun</a></figure><hr id="121dd7ec-b10a-80e9-826f-f7b0e88ee4ce"/><h1 id="14ddd7ec-b10a-8010-a913-ee9b329cc3ab" class="">Syntax</h1><ul id="14ddd7ec-b10a-80cf-a501-eb0771e55448" class="toggle"><li><details open=""><summary>Sig statements</summary><h2 id="14ddd7ec-b10a-807b-8c0f-dfe9ec2d6429" class="">Syntax for writing <strong>sig</strong> statements</h2><p id="14ddd7ec-b10a-8045-81b5-fda76ce29823" class="">In its simplest form, a</p><p id="14ddd7ec-b10a-8072-8d4a-e87ad298d92d" class=""><em>signature</em></p><p id="14ddd7ec-b10a-80fa-b3c3-fc4135e104ae" class="">looks like this:</p><p id="14ddd7ec-b10a-803a-b10b-f7bf3652d8d9" class=""><strong></strong><code><strong>  sig name { }</strong></code></p><p id="14ddd7ec-b10a-80a4-ba28-c78852fe542c" class="">Following each signature declaration, we find a signature body whose within a pair of braces. In the signature body, we can define a series of relations for which the set defined by the signature is the domain. For instance, in the <strong>FSObject</strong> signature body, we define a relation called &quot;<strong>parent</strong>&quot; which relates <strong>FSObject</strong>s to <strong>Dir</strong>s.</p><p id="14ddd7ec-b10a-8095-aa0c-e872d4f8c45d" class="">A sig may also have fields, which look like this (brackets indicate optional text):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-80f1-b5ed-c3d768529175" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  sig name {
+    //most fields look like this:
+    field-name-1: field-type-1,
+    //A signature may refer to signatures not
+    // defined until later in the model.
+
+    //multiple fields with the same type look like this:
+    field-name-2a, field-name-2b: field-type-2
+  }
+</code></pre><p id="14ddd7ec-b10a-80a5-8cf9-f6f0f2f292b0" class="">A signature extending another signature is a partition of that other signature:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-8035-b285-e7aa89e0962b" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  sig A extends C {
+    //fields
+  }
+
+  sig B extends C {
+    //fields
+  }
+</code></pre><p id="14ddd7ec-b10a-80e0-9e84-e538e836abbf" class="">means that <strong>A</strong> and <strong>B</strong> are disjoint subsets of C. If <strong>A</strong> and <strong>B</strong> have identical bodies, then we can get the same effect by writing</p><p id="14ddd7ec-b10a-80b8-968d-f25f8c791cc5" class=""><strong></strong><code><strong>  sig A, B extends C {<br/>    //fields<br/>  }<br/></strong></code></p><p id="14ddd7ec-b10a-80d6-99a7-d247a9a8265b" class="">We can use <strong>in</strong> instead of <strong>extends</strong> to get a slightly different effect -- <strong>in</strong> declares that one sig is a subsets of another, but does not enforce that it is disjoint from other sigs with the same parent. That is,</p><p id="14ddd7ec-b10a-80c1-b2a7-f6b43637586c" class=""><strong></strong><code><strong>  sig A in C {<br/>    //fields<br/>  }<br/><br/>  sig B in C {<br/>    //fields<br/>  }<br/></strong></code></p><p id="14ddd7ec-b10a-800f-95d3-c595d11f8898" class="">means that <strong>A</strong> and <strong>B</strong> are both subsets of <strong>C</strong>, but they are not necessarily disjoint. Once again, if <strong>A</strong> and <strong>B</strong> have identical bodies, we can use the shorthand</p><p id="14ddd7ec-b10a-8040-8309-e0bbfa8650b6" class=""><strong></strong><code><strong>  sig A, B in C {<br/>    //fields<br/>  }<br/></strong></code></p><p id="14ddd7ec-b10a-806b-ab8d-dfed98736198" class="">In general, two (or more) sigs which have the same definition may be declared together, like this:</p><p id="14ddd7ec-b10a-80c7-b7d5-e17686776be4" class=""><strong></strong><code><strong>  sig name1, name2 {<br/>    //fields<br/>  }<br/></strong></code></p><p id="14ddd7ec-b10a-802e-bd60-cf59a56a866c" class="">the <strong>abstract</strong> keyword is analogous to the <strong>abstract</strong> keyword of OO languages like Java, although it is not a perfect analogy. Consider some signature defined as follows:</p><p id="14ddd7ec-b10a-80a7-9ce2-ff098e12b7de" class=""><strong></strong><code><strong>  abstract sig Foo {<br/>    //fields<br/>  }<br/><br/>  sig Bar extends Foo {<br/>    //fields<br/>  }<br/><br/>  sig Cuz extends Foo {<br/>    //fields<br/>  }<br/></strong></code></p><p id="14ddd7ec-b10a-80e2-b894-ed77f58ce317" class="">By using the <strong>abstract</strong> keyword, we make guarantee that there will be no <strong>Foo</strong> that is not also either a <strong>Bar</strong> or a <strong>Cuz</strong>. However, had there been no signatures declared as subsets of <strong>Foo</strong> or extending it, then this restriction is relaxed; if a signature has no subsets then writing <strong>abstract</strong> has no effect.</p><p id="14ddd7ec-b10a-80fc-b143-ff94c16af50b" class="">You can force there to always be exactly one instance of (element in) a signature by using the <strong>one</strong> keyword. This also makes sure that every reference to this signature refers to the same atom.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-8010-ba9a-c55e55a764cb" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  one sig name {
+      // fields
+  }
+</code></pre><p id="14ddd7ec-b10a-80f4-8a05-c3be2ce83f13" class="">Examples:</p><p id="14ddd7ec-b10a-80d1-884c-c7b9d1ebf3f5" class=""><strong></strong><code><strong>  sig FSObject { }<br/><br/>  sig Dir {<br/>      contents: set FSObject<br/>  }<br/><br/>  sig FileSystem {<br/>      root: one Dir,<br/>      objects: set FSObject,<br/>      contents: Dir lone-&gt;set FSObject,<br/>      parent: FSObject set-&gt;lone Dir<br/>  }<br/></strong></code></p></details></li></ul><ul id="14ddd7ec-b10a-8031-8425-f77d6d48548b" class="toggle"><li><details open=""><summary>Quantifiers</summary><p id="14ddd7ec-b10a-80d1-8c89-fb5ae7775838" class="">The Alloy quantifiers are</p><ul id="14ddd7ec-b10a-8053-993d-ff0071403712" class="bulleted-list"><li style="list-style-type:disc"><strong>all x:X | formula </strong>every <strong>x</strong> of type <strong>X</strong> satisfies <strong>formula</strong>. If there are no <strong>X</strong>, then this statement is trivially true.</li></ul><ul id="14ddd7ec-b10a-80e7-8d58-e887cc4a09b2" class="bulleted-list"><li style="list-style-type:disc"><strong>some x:X | formula </strong>one or more <strong>x</strong> of type <strong>X</strong> satisfy <strong>formula</strong>. If there are no <strong>X</strong>, then this statement is trivially false.</li></ul><ul id="14ddd7ec-b10a-801f-9731-cffc68edba21" class="bulleted-list"><li style="list-style-type:disc"><strong>no x:X | formula </strong>exactly zero <strong>x</strong> of type <strong>X</strong> satisfy <strong>formula</strong></li></ul><ul id="14ddd7ec-b10a-80cc-8654-c4c2697e5252" class="bulleted-list"><li style="list-style-type:disc"><strong>one x:X | formula </strong>exactly one <strong>x</strong> of type <strong>X</strong> satisfies <strong>formula</strong></li></ul><ul id="14ddd7ec-b10a-805d-a6d2-f4d93e3d6c2c" class="bulleted-list"><li style="list-style-type:disc"><strong>lone x:X | formula </strong>either zero or one <strong>x</strong> of type <strong>X</strong> satisfies <strong>formula</strong></li></ul><p id="14ddd7ec-b10a-801e-8421-dbfa581ea72a" class="">Note that a &#x27;formula&#x27; is something that evaluates to a boolean value, as opposed to an &#x27;expression&#x27; which evaluates to a (relational) value. With &quot;some&quot;, &quot;no&quot;, one&quot;, and &quot;lone&quot;, you can also apply them to a set or a relation like this:</p><ul id="14ddd7ec-b10a-8078-966a-c33e78641c5a" class="bulleted-list"><li style="list-style-type:disc"><strong>some X </strong>there is at least one <strong>X</strong></li></ul><ul id="14ddd7ec-b10a-808b-8daa-fdff5c4815aa" class="bulleted-list"><li style="list-style-type:disc"><strong>no X </strong>there are no <strong>X</strong>&#x27;s</li></ul><ul id="14ddd7ec-b10a-80ed-92b9-c2d31aaa9084" class="bulleted-list"><li style="list-style-type:disc"><strong>one X </strong>there is exactly one <strong>X</strong></li></ul><ul id="14ddd7ec-b10a-802d-b9bd-c4f4a22b76d0" class="bulleted-list"><li style="list-style-type:disc"><strong>lone X </strong>there are either zero or one <strong>X</strong>&#x27;s</li></ul><hr id="14ddd7ec-b10a-803e-83d5-d874ee29e90f"/><p id="14ddd7ec-b10a-808c-a453-e0d9cb6ad6e7" class="">The basic format for a quantifier is</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-8025-b4a3-d7def512c4d4" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  quantifier variable:type | formula
+</code></pre><p id="14ddd7ec-b10a-80f3-a08f-dfe96a830070" class="">where the formula may includes references to the quantifier variable. An alternative notation is:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-8025-aa0a-fbec31339ef6" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  quantifier variable:type { formula }
+</code></pre><p id="14ddd7ec-b10a-8096-98c5-ddb235833ba4" class="">Examples:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-8049-a6db-f0a53daf1f74" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">//Does any directory contain itself?
+  some d: Dir | d.parent = d
+
+//every file is some directory
+  all f:File | some d:Dir | f.parent = d
+
+//no two directories have exactly the same contents
+  no dir1, dir2: Dir | dir1!=dir2 &amp;&amp; dir1.contents=dir2.contents
+</code></pre><hr id="14ddd7ec-b10a-80ea-9361-e220ab42a8df"/><p id="14ddd7ec-b10a-8001-a218-f0269a2d00eb" class="">The above features can, of course, be combined to produce arbitrarily complex formulas.</p><p id="14ddd7ec-b10a-8053-943e-ecbb07e7877c" class="">However, be warned that nested quantifiers may cause your model to become intractable. In generaly, try not to stack more than two or three of them together.</p></details></li></ul><ul id="14ddd7ec-b10a-80f2-b4de-dd3c3aecd545" class="toggle"><li><details open=""><summary>Relational Join</summary><h2 id="14ddd7ec-b10a-802c-a610-d493fe7d679d" class="">Relational Join</h2><p id="14ddd7ec-b10a-808e-bbc9-cbea4281f65b" class=""><strong>a.b</strong> is the composition of the relations <strong>a</strong> and <strong>b</strong>. For each tuple in <strong>a</strong> of the form (a0, a1, ..., an, X), and each tuple in <strong>b</strong> of the form (X, b1, ..., bn), the new relation <strong>a.b</strong> contains a tuple (a0, a1, ..., an, b1, ... bn). Only the last atom in tuples of <strong>a</strong> are matched with the first atom in tuples of <strong>b</strong>. Note that the matched atom is removed from the resulting tuple.</p><p id="14ddd7ec-b10a-808f-87df-dbd68aee3a6e" class="">Due to some clever definitions of Semantics, it can also be used to access fields of a signature. See <a href="https://alloytools.org/tutorials/online/sidenote-levels-of-understanding.html">levels of understanding</a> for examples of different ways to interpret the dot.</p></details></li></ul><ul id="14ddd7ec-b10a-8032-ae22-e8869c473544" class="toggle"><li><details open=""><summary>How to think about an Alloy model: 2 levels</summary><p id="14ddd7ec-b10a-8062-8c91-f59562f52434" class="">There are three basic levels of abstraction at which you can read an Alloy model.</p><ul id="14ddd7ec-b10a-80b2-8005-d74f8e50fe33" class="bulleted-list"><li style="list-style-type:disc">The highest level of abstraction is the OO paradigm. This level is helpful for getting started and for understanding a model at a glance; the syntax is probably familiar to you and usually does what you&#x27;d expect it to do.</li></ul><ul id="14ddd7ec-b10a-8084-b39a-c5ce782a321c" class="bulleted-list"><li style="list-style-type:disc">The middle level of abstraction is set theory. You will probably find yourself using this level of understanding the most (although the OO level will still be useful).</li></ul><ul id="14ddd7ec-b10a-8046-8b58-d3a6c27b5fcd" class="bulleted-list"><li style="list-style-type:disc">The lowest level of abstraction is atoms and relations, and corresponds to the true semantics of the language. However, even advanced users rarely think about things this way.</li></ul><hr id="14ddd7ec-b10a-8009-a484-f6d41971c81b"/><p id="14ddd7ec-b10a-8059-8aaf-d3f3a47d0b70" class="">Consider the following excerpt. A signature <strong>sig S</strong>, extending <strong>E</strong>, has a field <strong>F</strong> of type <strong>T</strong>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-807d-8c67-d560c4398b2d" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  sig S extends E {
+      F: one T
+  }
+
+  fact {
+      all s:S | s.F in T
+  }
+</code></pre><hr id="14ddd7ec-b10a-80e8-810e-f324a7f166fa"/><p id="14ddd7ec-b10a-80c1-9550-e648439c26a2" class="">The fragment can be roughly interpreted in an Object Oriented sense.</p><ul id="14ddd7ec-b10a-8028-a74c-c79d4ddc70df" class="bulleted-list"><li style="list-style-type:disc"><strong>S</strong> is a class</li></ul><ul id="14ddd7ec-b10a-805d-9e10-fd14becbf7aa" class="bulleted-list"><li style="list-style-type:disc"><strong>S</strong> extends its superclass <strong>E</strong></li></ul><ul id="14ddd7ec-b10a-8058-9814-ebf5f27a4ac6" class="bulleted-list"><li style="list-style-type:disc"><strong>F</strong> is a field of <strong>S</strong> pointing to a <strong>T</strong></li></ul><ul id="14ddd7ec-b10a-8033-b8d1-c8d32f15ce66" class="bulleted-list"><li style="list-style-type:disc"><strong>s</strong> is an instance of <strong>S</strong></li></ul><ul id="14ddd7ec-b10a-80e1-9786-cf5631a49276" class="bulleted-list"><li style="list-style-type:disc"><strong>.</strong> accesses a field</li></ul><ul id="14ddd7ec-b10a-804f-b5cd-d87f4d16e94c" class="bulleted-list"><li style="list-style-type:disc"><strong>s.F</strong> returns something of type <strong>T</strong></li></ul><hr id="14ddd7ec-b10a-8057-931a-e6d603996c8d"/><p id="14ddd7ec-b10a-8084-bd79-f67a98f8024d" class="">The fragment can be safely read as being about sets, elements, and relations among those sets and elements. Most users find this way of thinking intuitive after a little practice and does not lead to errors as the OO approach occasionally does.</p><ul id="14ddd7ec-b10a-808d-b46f-d59f87808beb" class="bulleted-list"><li style="list-style-type:disc"><strong>S</strong> is a set (and so is <strong>E</strong>)</li></ul><ul id="14ddd7ec-b10a-8030-908c-f2901ac7575c" class="bulleted-list"><li style="list-style-type:disc"><strong>S</strong> is a subset of <strong>E</strong></li></ul><ul id="14ddd7ec-b10a-8067-bcf6-f55205b3b1fa" class="bulleted-list"><li style="list-style-type:disc"><strong>F</strong> is a relation which maps each <strong>S</strong> to exactly one <strong>T</strong></li></ul><ul id="14ddd7ec-b10a-80d7-a735-e4a4ee7d38b3" class="bulleted-list"><li style="list-style-type:disc"><strong>s</strong> is an element of <strong>S</strong></li></ul><ul id="14ddd7ec-b10a-80e1-b32d-f2453f05cab8" class="bulleted-list"><li style="list-style-type:disc"><strong>.</strong> composes relations</li></ul><ul id="14ddd7ec-b10a-809e-a1a9-e0807df24d58" class="bulleted-list"><li style="list-style-type:disc"><strong>s.F</strong> composes the unary relation <strong>s</strong> with the binary relations <strong>F</strong>, returning a unary relation of type <strong>T</strong></li></ul><p id="14ddd7ec-b10a-80d0-824d-e7facb04b949" class="">In some sense, we are modeling a field of a class as a relation which maps instances of that class to instances of that field.</p></details></li></ul><ul id="14ddd7ec-b10a-80e5-a467-d9a4f4c49380" class="toggle"><li><details open=""><summary>Set Operations</summary><p id="14ddd7ec-b10a-80c7-90d7-c9c16b0a360f" class="">Alloy supports the standard set operations:</p><ul id="14ddd7ec-b10a-8021-af3f-f72983147c7a" class="bulleted-list"><li style="list-style-type:disc">union (<strong>+</strong>): <strong>t</strong> is in <strong>p+q</strong> if and only if <strong>t</strong> is in <strong>p</strong> <em>or</em> <strong>t</strong> is in <strong>q</strong>.</li></ul><ul id="14ddd7ec-b10a-80ac-92e2-f46dfbec6cb8" class="bulleted-list"><li style="list-style-type:disc">intersection (<strong>&amp;</strong>): <strong>t</strong> is in <strong>p&amp;q</strong> if and only if <strong>t</strong> is in <strong>p</strong> <em>and</em> <strong>t</strong> is in <strong>q</strong>.</li></ul><ul id="14ddd7ec-b10a-8047-aad3-c012820c0182" class="bulleted-list"><li style="list-style-type:disc">set subtraction (<strong></strong>): <strong>t</strong> is in <strong>p-q</strong> if and only if <strong>t</strong> is in <strong>p</strong> <em>but</em> <strong>t</strong> is <em>not</em> in <strong>q</strong>.</li></ul><ul id="14ddd7ec-b10a-80f2-9ed1-f857aceb54bd" class="bulleted-list"><li style="list-style-type:disc">set membership/subset (<strong>in</strong>): Set membership and subsets are both denoted <strong>in</strong>. The same symbol is used, since Alloy does not distinguish between atoms and singleton sets. To understand why atoms and singleton sets are treated this way, you should read more about how <a href="https://alloytools.org/tutorials/online/sidenote-relations-everywhere.html">everything is a relation in Alloy</a>.</li></ul></details></li></ul><ul id="14ddd7ec-b10a-8029-9d08-e0357a3a03b5" class="toggle"><li><details open=""><summary>Syntax for <em>appended facts</em></summary><p id="14ddd7ec-b10a-80ae-9410-f4f4d73e0050" class="">An appended fact is written by placing constraints in curly braces immediately after a <strong>sig</strong> statement. They can make a model clearer by logically grouping related constraints together.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-80c6-a8e7-f0684d34732b" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  sig name {
+    // fields of the signature
+  }{
+    // appended fact constraints
+  }
+</code></pre><p id="14ddd7ec-b10a-8021-ae10-d01c1037dd5b" class="">Any field mentioned in the appended fact has an implied &quot;<strong>all this:name |</strong>&quot; at its beginning, and an implied &quot;<strong>this.</strong>&quot; in front of it. Thus:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-8062-bcfe-e9bb05857220" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  sig Person {
+      closeFriends: set Person,
+      friends: set Person
+  } {
+      closeFriends in friends
+  }
+</code></pre><p id="14ddd7ec-b10a-809a-b04e-ccea97e75b64" class="">is really saying</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-806e-b34f-c9053a29cd9b" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  sig Person {
+      closeFriends: set Person,
+      friends: set Person
+  }
+
+  fact {
+      all x:Person | x.closeFriends in x.friends
+  }
+</code></pre><p id="14ddd7ec-b10a-80bd-ac2c-c2f507c400f5" class="">Consequently, appended fact can be more concise (and thus clearer) than the equivalent non-appended <a href="https://alloytools.org/tutorials/online/sidenote-format-fact.html">fact</a>. However, there is also a danger in forgetting that <em>every field</em> mentioned in an appended fact is prepended with &quot;<strong>this.</strong>&quot;.</p></details></li></ul><ul id="14edd7ec-b10a-8084-8b57-c2fb034cc576" class="toggle"><li><details open=""><summary>Assert</summary><p id="14edd7ec-b10a-8036-9738-d8edf9a2d7a0" class="">While a <strong>fact</strong> is used to <em>force</em> something to be true of the model, an <strong>assert</strong> is a claim that something <em>must already</em> be true due to the rest of the model. Assertions are verified (or falsified) using a <strong><a href="https://alloytools.org/tutorials/online/sidenote-format-check.html">check</a></strong><a href="https://alloytools.org/tutorials/online/sidenote-format-check.html"> statement</a>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-804b-a127-f511362cab00" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  assert name-of-assertion {
+    // list of constraints
+  }
+</code></pre><p id="14edd7ec-b10a-8065-9ba5-db62571ace45" class="">example:</p><p id="14edd7ec-b10a-8094-bd0b-f38b6fa9dd0f" class=""><strong></strong><code><strong>  assert acyclic {<br/>    no d: Dir | d in d.^contents<br/>  }<br/></strong></code></p><p id="14edd7ec-b10a-80da-be63-c915c2b1dddb" class="">Each assertion <em>must</em> have a name, since we will need to refer to them by name in <strong>check</strong> statements.</p></details></li></ul><ul id="14edd7ec-b10a-800e-adb1-d64d2f6c69d0" class="toggle"><li><details open=""><summary>Syntax for <em>check</em> statements</summary><p id="14edd7ec-b10a-80f8-98d1-da5eae1d7055" class="">With Alloy, you can automatically verify (up to a specified scope) or falsify (with a counterexample) an <strong><a href="https://alloytools.org/tutorials/online/sidenote-format-assert.html">assert</a></strong><a href="https://alloytools.org/tutorials/online/sidenote-format-assert.html"> statement</a>, by using a <strong>check</strong> command.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80be-a673-e6b62e9871de" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  check name-of-assert for integer
+</code></pre><p id="14edd7ec-b10a-80be-ab91-ed88421c550b" class="">The integer defines the scope -- the maximum size of each set in the model that will be considered. Specifically, it is the maximum size of the top-level signatures (sets). If there is any solution in that scope or less, Alloy is guaranteed to find it. Thus, we say Alloy is &#x27;complete up to scope&#x27;.</p><p id="14edd7ec-b10a-8065-8042-c20ab3674d38" class="">For example, the statement</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-807f-92de-cb288c5ad436" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  check acyclic for 5
+</code></pre><p id="14edd7ec-b10a-80b2-834c-da5cf559d899" class="">checks the <strong>acyclic</strong> assertion, and tells Alloy to only examine cases where there are at most 5 top level sigs/sets.</p><p id="14edd7ec-b10a-8092-83df-cce861d375a2" class="">Larger scopes take longer to solve, and often result in more complicated examples. Thus it is good practice to reduce the scope as low as it can go but still get a solution, before trying to visualize solutions.</p><p id="14edd7ec-b10a-80c6-8cd0-d18660a6f914" class="">You can refine you definition of scope with the <strong>but</strong> keyword. For example:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80ab-bb59-df16b5b11f3e" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  check acyclic for 5 but 1 fileSystem, 7 FSObject
+</code></pre><p id="14edd7ec-b10a-809d-8482-ce68932b949f" class="">The <strong>but</strong> command lets you specify exceptions to the main scope. In this case, Alloy will only examine 1 file system, up to 7 file system objects, and up to 5 of any other set.</p></details></li></ul><ul id="14edd7ec-b10a-804c-850f-d49b5a79a1a5" class="toggle"><li><details open=""><summary>Multiplicity Markings</summary><p id="14edd7ec-b10a-8028-9ab3-dc8b035b9f17" class="">When defining a field of a signature to be a relation, you write something like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80e1-ab5e-f19e9a1bfc1c" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  sig University {
+    groupMember: Student -&gt; Professor
+  }
+</code></pre><p id="14edd7ec-b10a-8052-8b9e-c43eb192829a" class="">Here, each University knows which student is a member of which professor&#x27;s research group. That is, there is a relation from Universities to Students to Professors. By writing multiplicity markings to the declaration of the relation, we can add additional constraints in a concise way. For example,</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-805b-871b-e1dc99bfa725" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  sig University {
+    groupMember: Student -&gt; one Professor
+  }
+</code></pre><p id="14edd7ec-b10a-807b-90f8-c888bf1aeb6a" class="">means that each student is in exactly one professor&#x27;s research group. If we instead wrote this,</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8067-b39e-eb78c501df5f" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  sig University {
+    groupMember: Student -&gt; lone Professor
+  }
+</code></pre><p id="14edd7ec-b10a-80ef-8674-ca5c40c50b8c" class="">Then we are saying that some students may be in no research group, but no student is in more than one. Lastly, we can write</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80fd-84ce-e43999fcf0d5" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  sig University {
+    groupMember: Student -&gt; some Professor
+  }
+</code></pre><p id="14edd7ec-b10a-80a8-a688-d7ac5885195c" class="">to say that each student is in one or more research groups. When no multiplicity markings are present, there are not constraints.</p><hr id="14edd7ec-b10a-803d-9917-deffc0ed95ee"/><p id="14edd7ec-b10a-8087-a5ac-ef1a608cd6e9" class="">You can also write multiplicity markings before the arrow. For example,</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-809f-b4b3-cf184d35f163" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  sig University {
+    groupMember: Student some -&gt; Professor
+  }
+</code></pre><p id="14edd7ec-b10a-8090-8cfa-e895dc88fad8" class="">This says that every professor has at least one student in his or her research group. We can put markings on both sides of the arrow as such:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80a4-b093-ca5c4486e67d" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  sig University {
+    groupMember: Student some -&gt; lone Professor
+  }
+</code></pre><p id="14edd7ec-b10a-80a7-9e08-f235081dba7f" class="">Here, every research group has at least one student, and each student is in up to one research group.</p><hr id="14edd7ec-b10a-80b3-b057-ffcb97d80a5b"/><p id="14edd7ec-b10a-80ef-9231-c9f6415bf730" class="">You can also place the <strong>lone</strong> and <strong>one</strong> multiplicity markings on signatures to control how many copies of that signature can exist (or, really, how many elements can ever be in that set defined by that signature). For example:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-803f-9ee3-ee668b794388" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+  one sig Root {...}
+  lone sig University {...}
+  some sig InitialState {...}</code></pre></details></li></ul><ul id="14edd7ec-b10a-80d1-8572-ddc110e173e7" class="toggle"><li><details open=""><summary><strong>pred</strong> (predicate) statements</summary><p id="14edd7ec-b10a-807d-b927-d30c3797baf4" class=""><strong></strong><code><strong>pred name [parameter1:domain1, parameter2:domain2] {<br/>     constraint1<br/>     constraint2<br/>     constraint3<br/>}<br/></strong></code></p><p id="14edd7ec-b10a-8007-a22b-eeea35e9ce19" class="">If the inputs satisfy all of the constraints listed in the body, then the predicate evaluates to true. Otherwise it evaluates to false.</p><hr id="14edd7ec-b10a-80ba-b2a5-fe2d2589985a"/><p id="14edd7ec-b10a-8057-a0d6-c276a5044684" class="">In an <a href="https://alloytools.org/tutorials/online/sidenote-operational-declarative.html">imperative</a> model, you might ask yourself &quot;<em>how can I make X happen?</em>&quot;. In a <a href="https://alloytools.org/tutorials/online/sidenote-operational-declarative.html">declarative</a> model (like Alloy), you ask yourself &quot;<em>how would I recognize that X has been accomplished?</em>&quot;.</p><p id="14edd7ec-b10a-80e4-9c9b-fd5d530c7553" class="">One reflection of this is that predicates in Alloy only ever evaluate to <em>true</em> or <em>false</em>, while function may evaluate to relations.</p><hr id="14edd7ec-b10a-80db-ae37-e22feb7eac10"/><p id="14edd7ec-b10a-80db-9a1a-d90dfa447826" class="">A predicate returns true or false. A similar construct is a <a href="https://alloytools.org/tutorials/online/sidenote-format-functions.html">function</a> which returns a value.</p><p id="14edd7ec-b10a-80c1-8a21-e90f2563d098" class="">Remind me what a <a href="https://alloytools.org/tutorials/online/sidenote-relation-function.html">function</a> is.</p></details></li></ul><ul id="14edd7ec-b10a-801e-90de-c631e7c4ca01" class="toggle"><li><details open=""><summary><strong>fun</strong> (function) statements</summary><p id="14edd7ec-b10a-8077-9ab3-f4c92b3636e6" class=""><strong></strong><code><strong>fun name [parameter1: domain1, paramter2: domain2, ..., parameterN: domainN]: domain {<br/>    [body must evaluate to a value in Domain]<br/>}<br/></strong></code></p><p id="14edd7ec-b10a-80e6-b6b7-d7ead2fd7180" class="">For example:</p><p id="14edd7ec-b10a-80c9-a411-c5027979ea2c" class=""><strong></strong><code><strong>fun between [lower:Int, upper:Int]: Int {<br/>    {answer: Int | lower&lt;answer &amp;&amp; answer&lt;upper }<br/>}<br/></strong></code></p><p id="14edd7ec-b10a-80b2-b5c9-ffc61ffbbe68" class="">Notice that in this case we have written a set comprehension as the body of the function. If there is more than one solution to the comprehension, then the function will return the set of all solutions.</p><p id="14edd7ec-b10a-8071-bc78-f925b83fa18d" class="">You can put constraints in the parameter list as reminders to yourself, although they are not actually enforced. For example:</p><p id="14edd7ec-b10a-805a-8e36-e10e48476654" class=""><strong></strong><code><strong>fun name [param: some Int]: lone Int {<br/>    ...<br/>}<br/></strong></code></p><hr id="14edd7ec-b10a-8053-99a6-f8787d1280b8"/><p id="14edd7ec-b10a-808d-b389-f79812d985d5" class="">A function evaluates to a value. A similar construct is a <a href="https://alloytools.org/tutorials/online/sidenote-format-pred.html">predicate</a> which returns either true or false, but is otherwise written the same.</p><p id="14edd7ec-b10a-80f5-86f8-ebfd6893b7a0" class="">Remind me what a <a href="https://alloytools.org/tutorials/online/sidenote-relation-function.html">function</a> is.</p></details></li></ul><ul id="14edd7ec-b10a-80e8-ab73-d70666edd6d4" class="toggle"><li><details open=""><summary>Relations as Ordered Tuples</summary><p id="14edd7ec-b10a-8042-964e-ff402df29fa2" class="">Alloy represents relations as sets of ordered tuples, and it can some times be useful to think of them this way. Intuitively, this is just an exhaustive list of every way to legally fill in the relation.</p><p id="14edd7ec-b10a-80ca-8f90-ea74123a5183" class="">A (binary) relation mapping file system objects to their parent directories is really a set of ordered pairs. The first entry in each pair is a file system object and the second is its parent directory. In one instance, it&#x27;s entries might look like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8028-8641-c95755a9be07" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{&lt; fileA, DirA &gt;,
+ &lt; fileB, DirB &gt;,
+ &lt; fileC, DirA &gt;}
+</code></pre><p id="14edd7ec-b10a-80ef-a995-ca492be92748" class="">Now consider a relation that maps pairs of nodes in a network to their cost. This relation would be said to have <em>arity 3</em>, and its tuples might look like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8003-9f88-f3dba0af4d80" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{&lt; nodeA, nodeB, 100 &gt;,
+ &lt; nodeA, nodeC, 25 &gt;,
+ &lt; nodeB, nodeD, 37 &gt;,
+ &lt; nodeC, nodeD, 14 &gt;}
+</code></pre><p id="14edd7ec-b10a-806b-9dcc-daa38aa66677" class="">Of course, if we didn&#x27;t write sufficient constraints on the model, the relaion might have more than one cost per pair:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8018-8e1a-f027ef2a3d12" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{&lt; nodeA, nodeB, 100 &gt;,
+ &lt; nodeA, nodeB, 50 &gt;,
+ &lt; nodeA, nodeC, 14 &gt;,
+ &lt; nodeC, nodeA, 37 &gt;}
+</code></pre><hr id="14edd7ec-b10a-8095-a18a-caf772d1ea2d"/><p id="14edd7ec-b10a-80c8-834d-f4b57d1278d2" class="">Since relations are just sets, you can take intersections, unions, set differences, and so on on them, just like any other sets. For instance, you might have a relation <strong>roads</strong>, which is an arity-2 relation on cities, stating which one have roads connecting them. It&#x27;s tuples might look like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80e4-bfc2-e1bea073ca68" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{&lt; cityA, cityB &gt;
+ &lt; cityA, cityC &gt;
+ &lt; cityB, cityD &gt;
+ &lt; cityC, cityD &gt;}
+</code></pre><p id="14edd7ec-b10a-80b2-8f6c-c92955b30ae0" class="">There might be another relation <strong>dirtRoads</strong> which is also a relation on pairs of cities. We might write the constraint</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-80e9-8429-dd396e67eb8f" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  fact physicalWorld {
+//dirt roads are roads
+    dirtRoads in roads
+
+//roads are two-way
+    roads = ~roads
+    dirtRoads = ~dirtRoads
+  }
+</code></pre><p id="14edd7ec-b10a-8018-9f10-e1569248a74e" class="">The ~ operator reverses a relation by reversing the tuples in the relation. Thus our earlier sample falue for <strong>roads</strong> did not satisfy the <strong>physicalWorld</strong> fact. It should have been</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8001-9263-c03f45d14aa2" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{&lt; cityA, cityB &gt;
+ &lt; cityB, cityA &gt;
+ &lt; cityA, cityC &gt;
+ &lt; cityC, cityA &gt;
+ &lt; cityB, cityD &gt;
+ &lt; cityD, cityB &gt;
+ &lt; cityC, cityD &gt;
+ &lt; cityD, cityC &gt;}
+</code></pre><p id="14edd7ec-b10a-8024-b1b2-e12ce2a54e05" class="">We also might want to talk about non-dirt roads, by writing something like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8005-8bf2-e5baafd2fe27" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  all r:(roads - dirtRoads) | r.foo ...
+</code></pre><p id="14edd7ec-b10a-805a-8c75-fdcaeb8d2b10" class="">If <strong>dirtRoads</strong> were</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-8002-ba93-efffa98d6339" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{&lt; cityC, cityD &gt;
+ &lt; cityD, cityC &gt;}
+</code></pre><p id="14edd7ec-b10a-80d4-b8a8-df1d0d53c141" class="">then <strong>(roads - dirt</strong></p></details></li></ul><ul id="14fdd7ec-b10a-8056-85aa-d7f29a3d3cec" class="toggle"><li><details open=""><summary>Temporal Connectors</summary><figure id="14fdd7ec-b10a-807b-a1c0-fd4d48840ed6" class="image"><a href="image.png"><img style="width:480px" src="image.png"/></a></figure><p id="155dd7ec-b10a-80dc-b486-f640d0640060" class=""><strong>Historically </strong><mark class="highlight-teal"><strong>F</strong></mark></p><table id="155dd7ec-b10a-80bf-abdd-e8a28eeeee4a" class="simple-table"><tbody><tr id="b1325201-b4c8-472e-b3f0-1f075ee107d3"><td id="cmOd" class="block-color-teal_background" style="width:42px">1</td><td id="VyOG" class="block-color-teal_background" style="width:35px"><mark class="highlight-default">2</mark></td><td id="A:N^" class="block-color-teal_background" style="width:40px">3</td><td id="_fHE" class="block-color-teal_background" style="width:35px">4</td><td id="R?wD" class="block-color-teal_background" style="width:35px">i</td><td id="}M?X" class="" style="width:35px">6</td><td id="uySS" class="" style="width:35px">7</td><td id="Yx&gt;\" class="" style="width:35px">8</td><td id="h?T}" class="" style="width:35px">9</td><td id="GwhR" class="" style="width:39px">10</td></tr></tbody></table><hr id="155dd7ec-b10a-80fe-a9fa-eb44dd07cfaa"/><p id="155dd7ec-b10a-8048-8d9b-c3a1fe61a017" class=""><strong>Always </strong><mark class="highlight-teal"><strong>F</strong></mark></p><table id="155dd7ec-b10a-80cc-b5f7-e77837936b10" class="simple-table"><tbody><tr id="b46f29c9-2642-4305-85ba-74e3907ea2fa"><td id="}M?X" class="" style="width:35px">1</td><td id="uySS" class="" style="width:35px">2</td><td id="GwhR" class="" style="width:39px">3</td><td id="h?T}" class="" style="width:35px">4</td><td id="Yx&gt;\" class="" style="width:35px">5</td><td id="R?wD" class="block-color-teal_background" style="width:35px">i</td><td id="_fHE" class="block-color-teal_background" style="width:35px">7</td><td id="cmOd" class="block-color-teal_background" style="width:42px">8</td><td id="VyOG" class="block-color-teal_background" style="width:35px">9</td><td id="A:N^" class="block-color-teal_background" style="width:40px">10</td></tr></tbody></table><hr id="155dd7ec-b10a-8045-b0a8-c531a38bf481"/><p id="155dd7ec-b10a-8083-9033-dd9d5b4d25f9" class=""><strong>Eventually </strong><mark class="highlight-teal"><strong>F</strong></mark></p><table id="155dd7ec-b10a-80d4-af9a-f5c636914dab" class="simple-table"><tbody><tr id="0f855f3b-cb0a-405b-a513-d38ef6e2c17e"><td id="}M?X" class="" style="width:35px">1</td><td id="uySS" class="" style="width:35px">2</td><td id="GwhR" class="" style="width:39px">3</td><td id="h?T}" class="" style="width:35px">4</td><td id="Yx&gt;\" class="" style="width:35px">5</td><td id="R?wD" class="block-color-default_background" style="width:35px">i</td><td id="_fHE" class="" style="width:35px">7</td><td id="cmOd" class="block-color-teal_background" style="width:42px">8</td><td id="VyOG" class="" style="width:35px">9</td><td id="A:N^" class="" style="width:40px">10</td></tr></tbody></table><p id="155dd7ec-b10a-802d-a27e-fdd3dc1fcd92" class="">For some <mark class="highlight-teal">k ≥ i     </mark>( becomes true in <span style="border-bottom:0.05em solid">at least</span> one value in the future )</p><hr id="155dd7ec-b10a-8077-aa8e-e33b12524f8b"/><p id="156dd7ec-b10a-8092-a232-f596dd1a0e05" class=""><strong>Once </strong><mark class="highlight-teal"><strong>F</strong></mark></p><table id="156dd7ec-b10a-8008-a4dc-e56c26665a78" class="simple-table"><tbody><tr id="6d2376bb-bcd2-49f8-b1cd-5a4e12f7cf62"><td id="cmOd" class="" style="width:42px">1</td><td id="VyOG" class="" style="width:35px"><mark class="highlight-default">2</mark></td><td id="A:N^" class="block-color-teal_background" style="width:40px">3</td><td id="_fHE" class="" style="width:35px">4</td><td id="R?wD" class="" style="width:35px">i</td><td id="}M?X" class="" style="width:35px">6</td><td id="uySS" class="" style="width:35px">7</td><td id="Yx&gt;\" class="" style="width:35px">8</td><td id="h?T}" class="" style="width:35px">9</td><td id="GwhR" class="" style="width:39px">10</td></tr></tbody></table><p id="156dd7ec-b10a-803b-a895-ffae20d9d6dd" class="">Has happened at least once in the past ( included i ) </p><hr id="156dd7ec-b10a-8082-9e47-c24fc8dfeba7"/><p id="156dd7ec-b10a-8018-9930-c973d0892f2d" class=""><mark class="highlight-red"><strong>F</strong></mark><mark class="highlight-teal"><strong>  </strong></mark><strong>Until </strong><mark class="highlight-teal"><strong> G</strong></mark></p><table id="156dd7ec-b10a-8070-8cf9-fb3597248cef" class="simple-table"><tbody><tr id="b952c5da-69ba-4ba5-b2ee-3c2d9580cdbc"><td id="}M?X" class="" style="width:35px">1</td><td id="uySS" class="" style="width:35px">2</td><td id="GwhR" class="" style="width:39px">3</td><td id="h?T}" class="" style="width:35px">4</td><td id="Yx&gt;\" class="" style="width:35px">5</td><td id="R?wD" class="block-color-red_background" style="width:35px">i</td><td id="_fHE" class="block-color-red_background" style="width:35px">7</td><td id="cmOd" class="block-color-red_background" style="width:42px">8</td><td id="VyOG" class="block-color-teal_background" style="width:35px">9</td><td id="A:N^" class="" style="width:40px">10</td></tr></tbody></table><p id="156dd7ec-b10a-80fb-b57a-f24fc07ebbab" class="">F is true until G happens ( G can happen also in “i”, and  if G is true in k &gt; i then F is true from i )</p><hr id="156dd7ec-b10a-8007-9c89-ee2868c9957b"/><p id="155dd7ec-b10a-8099-b11a-faa18731175e" class=""><strong>Eventually Always </strong><mark class="highlight-teal"><strong>F</strong></mark></p><p id="155dd7ec-b10a-808f-9d7d-f38c9f77afa0" class="">describes a stabilization property: after a certain point, F becomes permanently true.</p><figure id="155dd7ec-b10a-8088-83c1-e0bd97167746" class="image"><a href="image%201.png"><img style="width:288px" src="image%201.png"/></a></figure><hr id="156dd7ec-b10a-80c1-bb5d-c819c9fe5ff9"/><p id="155dd7ec-b10a-80c9-a1d6-c5bbef60fd5f" class=""><strong>Always Eventually  </strong><mark class="highlight-teal"><strong>F</strong></mark></p><p id="155dd7ec-b10a-80e0-b468-ef8c7597617c" class="">describes a recurrence property: F will continue to become true repeatedly throughout the system&#x27;s behavior.</p><figure id="155dd7ec-b10a-8098-bf75-fddab34f86de" class="image"><a href="image%202.png"><img style="width:288px" src="image%202.png"/></a></figure><hr id="155dd7ec-b10a-80c1-baf2-d0d5e3d9b9d5"/><p id="157dd7ec-b10a-8087-817c-dfca4d9dd6a3" class=""><strong>After  </strong><mark class="highlight-teal"><strong>F</strong></mark></p><table id="157dd7ec-b10a-800d-b891-c2f2891d0211" class="simple-table"><tbody><tr id="0fd98037-1534-4b16-b2b3-520485c48803"><td id="}M?X" class="" style="width:35px">1</td><td id="uySS" class="" style="width:35px">2</td><td id="GwhR" class="" style="width:39px">3</td><td id="h?T}" class="" style="width:35px">4</td><td id="Yx&gt;\" class="" style="width:35px">5</td><td id="R?wD" class="block-color-default_background" style="width:35px">i</td><td id="_fHE" class="block-color-teal_background" style="width:35px">7</td><td id="cmOd" class="" style="width:42px">8</td><td id="VyOG" class="" style="width:35px">9</td><td id="A:N^" class="" style="width:40px">10</td></tr></tbody></table><p id="157dd7ec-b10a-8002-ae58-c3e14581e1c7" class="">Same as saying <mark class="highlight-teal">F’</mark></p><hr id="157dd7ec-b10a-804c-8001-d04682dd2327"/><p id="157dd7ec-b10a-805c-a811-e74c321ef63f" class=""><strong>Before</strong><mark class="highlight-teal"><strong> F</strong></mark></p><table id="157dd7ec-b10a-80f0-8d23-d01d0218620a" class="simple-table"><tbody><tr id="040c73f1-64c9-4805-a33d-fc91b90f6b1c"><td id="}M?X" class="" style="width:35px">1</td><td id="uySS" class="" style="width:35px">2</td><td id="GwhR" class="" style="width:39px">3</td><td id="h?T}" class="" style="width:35px">4</td><td id="Yx&gt;\" class="block-color-teal_background" style="width:35px">5</td><td id="R?wD" class="block-color-default_background" style="width:35px">i</td><td id="_fHE" class="block-color-default_background" style="width:35px">7</td><td id="cmOd" class="" style="width:42px">8</td><td id="VyOG" class="" style="width:35px">9</td><td id="A:N^" class="" style="width:40px">10</td></tr></tbody></table><p id="157dd7ec-b10a-807e-8a11-ec6efeb0a6b4" class="">False in state 0</p><hr id="155dd7ec-b10a-8018-a952-fbe7586e4193"/><p id="157dd7ec-b10a-80f6-813d-ed6b8abd4a4d" class=""><mark class="highlight-red"><strong>F</strong></mark><strong> Since</strong><mark class="highlight-teal"><strong> G</strong></mark></p><table id="157dd7ec-b10a-8063-9c80-d50dfcb71e41" class="simple-table"><tbody><tr id="b1ed82f3-4ee4-49fa-b989-96af8969682c"><td id="}M?X" class="" style="width:35px">1</td><td id="uySS" class="block-color-teal_background" style="width:35px">2</td><td id="GwhR" class="block-color-red_background" style="width:39px">3</td><td id="h?T}" class="block-color-red_background" style="width:35px">4</td><td id="Yx&gt;\" class="block-color-red_background" style="width:35px">5</td><td id="R?wD" class="block-color-red_background" style="width:35px">i</td><td id="_fHE" class="block-color-default_background" style="width:35px">7</td><td id="cmOd" class="" style="width:42px">8</td><td id="VyOG" class="" style="width:35px">9</td><td id="A:N^" class="" style="width:40px">10</td></tr></tbody></table><p id="155dd7ec-b10a-8017-af86-e2a0056a124d" class="">G can be true in <em>i</em></p><hr id="157dd7ec-b10a-8023-9148-c9ecbbced6c3"/><p id="157dd7ec-b10a-801f-9ad9-e5d42af60c28" class=""><strong>F ; G     ⇒    D and after G</strong></p><hr id="157dd7ec-b10a-8034-b1a6-d5bf350999ac"/><p id="157dd7ec-b10a-80d1-8d36-de0e04f887e1" class="">
+</p><figure id="14fdd7ec-b10a-8052-b066-e51ebf098998" class="image"><a href="image%203.png"><img style="width:480px" src="image%203.png"/></a></figure><figure id="14fdd7ec-b10a-8023-addc-cf2e9f97013e" class="image"><a href="image%204.png"><img style="width:480px" src="image%204.png"/></a></figure><ul id="157dd7ec-b10a-8009-9634-ec86c26188c9" class="toggle"><li><details open=""><summary>Examples</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14fdd7ec-b10a-807a-9150-c314764cff3a" class="code"><code class="language-Plain Text">sig Person {
+  var liveness: Liveness
+}
+
+enum Liveness { Alive, Dead}
+
+pred Die [p: Person] {
+ p.liveness = Alive
+ p.liveness&#x27; = Dead    // next state
+}
+
+fact NoResurrection{
+  always ( all p:Person | p.liveness = Dead 
+		implies
+                   always p.liveness = Dead
+                 )
+}
+
+// We need both &quot;always&quot; -&gt; the first one is used to say that
+// the fact stands even for future states.
+// The second states that the future states of Person are always Dead
+
+assert NoResurrection{
+  always ( all p: Person | p.liveness = Dead
+                    implies after
+                  p.liveness = Dead
+                 )
+}
+
+// check NoResurrection for 3
+
+fact noImmortality {
+  always ( all p:Person | p.liveness = Alive 
+                   implies after ( eventually p.liveness = Dead )       
+              )
+}
+
+fact NoDeadThenAlive{
+   always ( 
+ 		all p:Person | p.liveness = Alive implies historically p.liveness = Alive
+                  )
+}
+
+fact DeadSinceDeath {
+  always (
+                    all p:Pearson |  p.liveness = Dead implies once Die[p]
+                )
+}
+
+fact AliveUntilDeath {
+  always ( all p:Person | p.liveness = Alive implies (p.liveness=Alive until p.liveness = Dead  ) )
+
+}
+
+
+assert AliveUntilDeath2 {
+  always ( all p:Person | p.liveness = Alive  implies ( Die[p] releases p.liveness = Alive ) )
+}
+
+assert DeadSinceDeath2 {
+ always (all p:Person | p.liveness = Dead implies ( Die[p] triggered p.liveness = Dead ) )
+}
+
+assert DeadSinceDeath2 {
+  always ( all p: Person | p.liveness = Dead implies ( p.liveness= Dead since Die[p] )  )
+}
+
+run{#Person = 4 and some p: Person | (p.liveness = Alive; p.liveness = Alive; p.liveness = Dead   ) } for 5</code></pre><p id="157dd7ec-b10a-801c-83f0-f70b03051ec2" class="">
+</p></details></li></ul></details></li></ul><ul id="14fdd7ec-b10a-80fd-96f6-fa097be9292b" class="toggle"><li><details open=""><summary>disj</summary><p id="14fdd7ec-b10a-805d-a7c4-c9d0a3ae4232" class=""><code>disj</code> can be prepended to any multiplicity to guarantee that it will be disjoint among all atoms. If we write</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14fdd7ec-b10a-80ed-864a-db1c4988e30b" class="code"><code class="language-Plain Text">sig Lock {}
+sig Key {
+  lock: disj one Lock
+}</code></pre><p id="14fdd7ec-b10a-80dd-83b1-c18948d6c458" class="">Then every key will correspond to a <em>different</em> lock. If we instead write</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14fdd7ec-b10a-808e-b4d6-d68789c5be3f" class="code"><code class="language-Plain Text">sig Lock {}
+sig Key {
+  locks: disj some Lock
+}</code></pre><p id="14fdd7ec-b10a-8089-acc7-f2b6bf06f9b7" class="">Then every key will correspond to one or more locks, but no two keys will share a lock.</p></details></li></ul><ul id="14fdd7ec-b10a-80de-b4b0-f01427de80d8" class="toggle"><li><details open=""><summary>iff</summary><h3 id="14fdd7ec-b10a-80e9-a67c-d0aae890dd19" class=""><code><strong>iff</strong></code><strong> (</strong><code><strong>&lt;=&gt;</strong></code><strong>)</strong><strong><a href="https://alloy.readthedocs.io/en/latest/language/expressions-and-constraints.html#iff"></a></strong></h3><p id="14fdd7ec-b10a-80a5-a6c0-ed5c46849aae" class=""><code>P </code><code><strong>iff</strong></code><code> Q</code> is true if P and Q are both true or both false. Use this for booleans instead of <code>=</code>.</p></details></li></ul><ul id="159dd7ec-b10a-80c1-9005-e56f693cfe4c" class="toggle"><li><details open=""><summary>impliesed</summary><p id="159dd7ec-b10a-80ac-bde3-e5d35b3bc47d" class="">Given arbitrary formulas <code>P</code>, <code>Q</code>, <code>T</code>, <code>P implies Q else T</code> is the same as <code>(P and Q) or (not P and T)</code>.<br/>Without the <br/><code>else</code> , if P is false, we can’t say anything about Q</p></details></li></ul><ul id="159dd7ec-b10a-801b-87dc-f4ba71142bf9" class="toggle"><li><details open=""><summary><strong>Set comprehension</strong></summary><ul id="159dd7ec-b10a-8016-a2f8-e7c3bdf732e7" class="bulleted-list"><li style="list-style-type:disc">The binary relation between directories and the contained objects<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="159dd7ec-b10a-8030-b010-e4aa587aca1f" class="code"><code class="language-Plain Text">{ d : Dir, o : Object | some d.contents.o }
+= {(Root,File),(Root,Dir0),(Dir0,Dir1)}</code></pre></li></ul></details></li></ul><p id="158dd7ec-b10a-80b6-aa91-e4ca998222fa" class="">~</p><h1 id="14ddd7ec-b10a-80e0-b579-db99003e433e" class="">Examples</h1><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>File System Model</strong></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14ddd7ec-b10a-80ad-b8af-f238a81f0660" class="code"><code class="language-Plain Text">// A file system object in the file system
+sig FSObject { parent: lone Dir }
+
+// A directory in the file system
+sig Dir extends FSObject { contents: set FSObject }
+
+// A file in the file system
+sig File extends FSObject { }
+
+// A directory is the parent of its contents
+fact { all d: Dir, o: d.contents | o.parent = d }
+
+Given any directory d and any (FSObject) o in d&#x27;s contents, d must be the parent of o.
+// alternative :
+fact { all d: Dir, o: d.contents | o.parent = d }
+
+fact { all d: Dir | all o: d.contents | o.parent = d }
+
+fact { all d: Dir, o: FSObject | o in d.contents =&gt; o.parent = d }
+
+fact { all d: Dir | all o: FSObject | o in d.contents =&gt; o.parent = d }
+
+// All file system objects are either files or directories
+fact { File + Dir = FSObject }
+
+or 
+abstract sig FSObject {...}
+
+// There exists a root
+one sig Root extends Dir { } { no parent }
+
+fact { FSObject in Root.*contents }
+
+// The contents path is acyclic
+assert acyclic { no d: Dir | d in d.^contents }
+
+// Now check it for a scope of 5
+check acyclic for 5
+
+// File system has one root
+assert oneRoot { one d: Dir | no d.parent }
+
+// Now check it for a scope of 5
+check oneRoot for 5
+
+// Every fs object is in at most one directory
+assert oneLocation { all o: FSObject | lone d: Dir | o in d.contents }
+
+// Now check it for a scope of 5
+check oneLocation for 5</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14edd7ec-b10a-809e-b32b-fc0465521b8d" class="code"><code class="language-Plain Text">// A file system object in the file system
+abstract sig FSObject { }
+
+// File system objects must be either directories or files.
+sig File, Dir extends FSObject { }
+
+// A File System
+sig FileSystem {
+  root: Dir,
+  live: set FSObject,
+  contents: Dir lone-&gt; FSObject,
+  parent: FSObject -&gt;lone Dir
+}{
+  // root has no parent
+  no root.parent
+  // live objects are reachable from the root
+  live in root.*contents
+  // parent is the inverse of contents
+  parent = ~contents
+}
+
+pred example { }
+
+run example for exactly 1 FileSystem, 4 FSObject</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Family</strong></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="63413000-99ec-4690-9867-96c1d427821f" class="code"><code class="language-Plain Text">abstract sig Person {
+ father: lone Man,
+ mother: lone Woman
+}
+
+sig Man extends Person {
+wife: lone Woman
+}
+
+sig Woman extends Person {
+husband: lone Man
+}
+
+fun grandpas [p: Person] : set Person {
+p.(mother+father).father
+}
+
+pred ownGrandpa [p: Person] {
+p in p.grandpas
+}
+
+run ownGrandpa for 4 Person
+
+fact {
+no p: Person |
+p in p.(mother+father) or
+p in (p.(mother+father)).(mother+father) or
+p in ((p.(mother+father)).(mother+father)).
+(mother+father) …
+}
+
+fact {
+no p: Person | p in p.^(mother+father)
+}
+
+fact {
+all m: Man, w: Woman |
+m.wife = w iff w.husband = m
+}
+
+fact {
+wife = ~husband
+}
+
+fact {
+no p: Person | p in p.^(mother+father)
+wife = ~husband
+}
+
+assert NoSelfFather {
+no m: Man | m = m.father
+}
+check NoSelfFather
+
+fact SocialConvention {
+no ((wife+husband) &amp; ^(mother+father))
+}
+
+fact SocialConvention2 {
+all m: Man, w: Woman |
+( m.wife = w and w.husband = m )
+implies
+not( m in w.^(father+mother) or
+w in m.^(father+mother) )
+} 
+
+fun ancestors [p: Person]: set Person {
+p.^(mother+father)
+}
+
+fact noCommonAncestors {
+all p1: Man,
+p2: Woman | p1-&gt;p2 in wife
+implies
+ancestors[p1] &amp; ancestors[p2] = none
+}
+
+fact SocialConvention3 {
+no ( (wife+husband)
+&amp;
+(mother+father).~(mother+father) )
+}
+
+assert Stronger {
+noCommonAncestors implies SocialConvention3
+}
+check Stronger for 8
+assert NotStronger {
+SocialConvention3 implies noCommonAncestors
+}
+check NotStronger for 8
+
+fact SocialConvention4 {
+all p1: Person, p2: Person |
+p1 in p2.(mother+father)
+implies
+p1.(mother+father) &amp; p2.(mother+father) = none
+} 
+
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Address Book</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="73d76c3b-8ba2-4543-baeb-a839910a2db4" class="code"><code class="language-Plain Text">sig Name, Addr {}
+
+
+  sig Book {
+  var addr: Name -&gt; lone Addr
+}
+
+pred show {}
+run show for 3 but 1 Book
+
+pred show [b: Book] {
+#b.addr &gt; 1 }
+
+pred show [b: Book] {
+#b.addr &gt; 1
+#Name.(b.addr) &gt; 1 }
+
+pred show [b: Book] {
+#b.addr &gt; 1
+some n: Name | #n.(b.addr) &gt; 1 }
+
+// DYNAMIC:
+
+pred show [b: Book] {
+  #b.addr = 0
+  after ( #b.addr = 1
+  and
+  after #b.addr = 2 )
+}
+
+pred show [b: Book] {
+#b.addr = 0 ; #b.addr = 1 ; #b.addr = 2 )
+}
+
+run show for 3 but 1 Book, 3 steps
+
+pred add [b: Book, n: Name, a: Addr] {
+b.addr&#x27; = b.addr + n -&gt; a
+}
+
+pred del [b: Book, n: Name] {
+b.addr&#x27; = b.addr - n-&gt;Addr
+}
+
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mailbox</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ccf34100-b9f2-4095-af17-fbbb692451fc" class="code"><code class="language-Plain Text">var sig Message {}
+
+var sig Trashed in Message {}
+
+pred delete[ m: Message ]
+{ m not in Trashed
+
+ Trashed&#x27; = Trashed + m
+ Message&#x27; = Message }
+ 
+ 
+ pred restoreEnabled[ m:Message ]
+{ m in Trashed }
+
+pred restore[ m: Message ]
+{ restoreEnabled[m]
+ Trashed&#x27; = Trashed - m
+ Message&#x27; = Message }
+ 
+ pred deleteTrashed
+{ #Trashed &gt; 0
+ after #Trashed = 0
+ Message&#x27; = Message-Trashed }
+ 
+ pred doNothing 
+{ Message&#x27; = Message
+ Trashed&#x27; = Trashed }
+ 
+ pred receiveMessages
+{ #Message&#x27; &gt; #Message
+ Trashed&#x27; = Trashed }
+ 
+ fact systemBehavior {
+no Trashed
+always (
+( some m: Message | delete[m] or restore[m] )
+or
+deleteTrashed
+or
+receiveMessages
+or
+doNothing
+)
+}
+
+assert restoreAfterDelete {
+ all m: Message |
+ always restore[m] implies once delete[m]
+}
+
+assert deleteAll
+{ always ( ( Message in Trashed and deleteTrashed )
+implies
+after always no Message) }
+
+assert messagesNeverChange {
+ always (Message&#x27; in Message and Message in Message&#x27;)
+}
+
+assert ifMessagesNotDeletedTrashNotEmptied
+{ ( always all m : Message | not delete[m] )
+implies
+always not deleteTrashed }</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">InterRail</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a52f0ae3-302e-4070-89ee-51ab5ab90f9f" class="code"><code class="language-Plain Text">//  INTER-RAIL
+
+sig Traveler{
+   var status: one Status,
+   var position: one City,
+   pass: some City,
+   startingPoint: one City,
+   var visitedCities: set City
+} {
+// IF THERE ARE SOME VAR INVOLVES IN A FACT, DONT PUT IT HERE!!!
+   startingPoint in pass
+   #pass &gt; 3
+}
+
+abstract sig City{
+   connect: some City
+}{
+   // doesnt connect itself
+   this not in connect
+}
+
+one sig Milan, Paris, London, Amsterdam, Berlin, Copenaghen, Stockholm extends City{}
+
+abstract sig Status {}
+
+one sig Travelling, Arrived extends Status{}
+
+
+// CONSTRAINTS:
+
+// If a City c1 connects c2, then c2  conncects c1
+fact fact1{
+   all disj c1,c2: City | c2 in c1.connect implies c1 in c2.connect
+}
+
+fact fact2{
+   // starting from one city, I can reach all the others
+   all c: City | c.connect = City - c
+}
+
+fact initialState{
+   // every Traveler is travelling at the beginning
+   all t: Traveler | t.status = Travelling and t.visitedCities = none
+   startingPoint = position
+}
+
+pred example{
+   #Traveler = 2
+   always( some t: Traveler, c: City |  move[t,c] or stutter )
+   eventually all t:Traveler | t.status = Arrived
+}
+
+pred stutter{
+  status&#x27; = status 
+  position&#x27; = position
+  visitedCities&#x27; = visitedCities
+}
+
+run example for 6
+
+pred move[t:Traveler, c: City]{
+   t.status = Travelling
+   c != t.position and c not in t.visitedCities and c in t.pass
+
+   t.position&#x27; = c 
+   c = t.startingPoint implies t.status&#x27; = Arrived else t.status&#x27; = t.status
+   t.visitedCities&#x27; = t.visitedCities + c
+
+   all t2: Traveler- t |  t2.status&#x27; = t2.status and t2.startingPoint&#x27; = t2.startingPoint and t2.visitedCities&#x27; = t2.visitedCities and
+     t2.position&#x27; = t2.position
+}
+
+
+fact fact3{
+   always(
+   all t: Traveler | t.status = Arrived implies always(t.status = Arrived)
+)
+}
+
+// Traveler visit all cities in their pass.
+
+fact fact4{
+   eventually all t:Traveler | t.visitedCities = t.pass
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">TreasureHunt</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ee04e26-9015-479d-bc37-e7a707ef6249" class="code"><code class="language-Plain Text">// The Treasure Hunt
+
+abstract sig HuntElement{}
+
+sig Island extends HuntElement {
+   connect: some Island
+}{
+   this not in connect
+}
+
+one sig StartingIsland in Island{}
+
+sig Treasure{
+  var position: one HuntElement  // treasure can be in the island or then taken by an Adventurer
+}{
+   // startingIsland doesnt have Treasure
+   position not in StartingIsland
+}
+
+sig Adventurer extends HuntElement{
+  var isAt: one Island
+}
+
+fact fact1{
+   // Islands are connected by one-way or two-way bridges
+   some disj i1,i2: Island | i2 in i1.connect and i1 in i2.connect
+   some disj i1,i2: Island | i2 in i1.connect and i1 not in i2.connect
+}
+
+fact initialCondition{
+   all a: Adventurer |  a.isAt = StartingIsland
+   all t: Treasure | t.position in Island
+}
+
+run{
+   #Adventurer &gt; 2
+   #Treasure &gt; 2
+} for 10
+
+fact fact2{
+   // from StartingIsland, I have to be able to reach all the others and come back
+   StartingIsland.^connect = Island
+}
+
+fact fact3{
+   // each Island has at most one treasure
+   all t: Treasure | t.position not in (Treasure - t).position
+}
+
+// An adventurer can move to an island only if it is connected by a bridge from their current position.
+
+pred move[a: Adventurer, i: Island]{
+   i not in a.isAt and i in a.isAt.connect
+   
+   a.isAt&#x27; = i
+
+   position&#x27; = position
+   
+}
+
+pred stutter {
+  isAt&#x27; = isAt
+  position&#x27; = position
+}
+
+pred takeTreasure[a:  Adventurer] {
+   a.isAt in Treasure.position
+  
+   let tr = position.(a.isAt) |  tr.position&#x27; = a
+
+   a.isAt&#x27; = a.isAt
+  
+}
+
+fact events {
+   //Either a move happens or nothing changes ( needed for when no move happens )
+  always ( (some a: Adventurer | some i: Island | move[a, i] or  takeTreasure[a]  ) or stutter )
+  // eventually some a:Adventurer | takeTreasure[a]
+  some a: Adventurer | (eventually takeTreasure[a])
+  some a: Adventurer | not (eventually takeTreasure[a])
+  
+}
+
+fact movingWithTreasure{
+  always(  all a:Adventurer | all t: Treasure | t.position = a implies eventually a.isAt = StartingIsland)
+}
+
+fact carryOneTreasure{
+  always(  all t: Treasure,  a: Adventurer | t. position = a implies a not in (Treasure-t).position  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">RoadNetwork</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7a8199e2-2c76-49a3-976d-cf4334a04521" class="code"><code class="language-Plain Text">enum Status { Accident, Normal}
+
+abstract sig RoadNetwork{} 
+
+sig Crossroad extends RoadNetwork{
+   var status: one Status
+}
+
+sig Road extends RoadNetwork{
+    connect:  Crossroad -&gt; Crossroad
+}{
+   #connect = 1
+}
+
+// a Road always connects two different Crossroads
+fact roadFact{
+	all r: Road | all c1,c2 : Crossroad | c1 -&gt; c2 in r.connect implies c1 != c2
+}
+
+fun connected : Crossroad -&gt; Crossroad {
+  Road.connect
+}
+
+
+sig Car{
+   var located: one RoadNetwork,
+   var nextMove: lone Crossroad
+}
+
+fact crossRoadConnection{
+       // every Crossroad is connected to at least one road ( origin or destination )
+	all c: Crossroad | some r: Road | c in  r.connect.Crossroad or  c in r.connect[Crossroad]
+}
+
+
+fact directions{
+
+   some r1,r2: Road,  c1,c2 : Crossroad | r1.connect = c1-&gt;c2 and r2.connect = c2-&gt;c1
+   some r1,r2: Road,  c1,c2 : Crossroad | r1.connect = c1-&gt;c2 and not r2.connect = c2-&gt;c1
+
+}
+
+
+fact initialCondition{
+	some Car
+	all c: Car | c.located in Crossroad and c.nextMove = none 
+}
+
+
+pred example{
+   #Car = 3
+   all c: Car | c.located not in (Car-c).located
+   // some c: Car | after carMoves[c] and (after after carMoves[c]) and (after after after carMoves[c])
+   // all c: Car | after after after after after c.located = (Car-c).located and c.located in Crossroad
+   
+}
+
+run example for 6
+
+
+// for better visualizaiton
+
+fun origin: Crossroad -&gt; Road{
+   { c1: Crossroad, r2 : Road | c1 in Road.connect.Crossroad and r2 in connect.Crossroad.c1 }
+}
+
+fun destination: Road -&gt; Crossroad{
+   { r1:Road , c2 : Crossroad | c2 in   Road.connect[Crossroad]  and r1 in connect.c2.Crossroad}
+}
+
+
+pred carMoves[c: Car]{
+	c.located in Crossroad implies (
+		c.located&#x27; =  origin[c.located]
+    )
+
+	c.located in Road implies (
+		c.located&#x27; = destination[c.located]
+	)
+}
+
+pred stutter[c:Car]{
+	c.located&#x27; = c.located
+        status&#x27; = status
+}
+
+
+fact{
+	always(
+		all c: Car | carMoves[c] or stutter[c]
+	)
+}
+
+pred example2{
+   example
+   some c: Car | after carMoves[c] and (after after carMoves[c]) and (after after after carMoves[c])
+   all c: Car | after after after after after c.located = (Car-c).located and c.located in Crossroad
+   all c: Crossroad | c.status = Normal
+   
+}
+
+run example2 for 10
+
+
+
+
+fact noCarsLeaveAccident {
+  always all c : Crossroad, car: Car | c.status = Accident and car.located in destination.c  implies stutter[car]
+}
+
+fact someAccident{
+  after always some c : Crossroad | c.status = Accident
+}
+
+
+
+assert trafficStuckInAccident {
+  always all c : Crossroad, car : Car |  c.status = Accident and car.located in Road and destination[car.located] = c
+                                                              implies
+                                                              car.located =car.located&#x27;
+}
+
+check trafficStuckInAccident for 10
+
+
+
+
+
+
+
+
+
+
+</code></pre></div></details><p id="15cdd7ec-b10a-8025-b1a9-cc6e83f1813d" class="">
+</p><p id="152dd7ec-b10a-808e-bace-da36953d35af" class="">
+</p><p id="151dd7ec-b10a-8068-a44b-cb0c79cfd348" class="">
+</p><p id="14ddd7ec-b10a-8051-a227-f5436bc30262" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
